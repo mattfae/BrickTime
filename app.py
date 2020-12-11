@@ -1,8 +1,8 @@
-from flask import Flask, jsonify, request
-from flask_mongoengine import MongoEngine
+from flask import Flask, request, Response
+from database.db import initialize_db
+from database.models import Goal
 
 app = Flask(__name__)
-
 
 my_goals = [
     {
@@ -17,17 +17,23 @@ my_goals = [
     },
 ]
 
+app.config['MONGODB_SETTINGS'] = {
+    'host': 'mongodb://localhost/movie-bag'
+    }
 
-# simple example page
+initialize_db(app)
+
+
 @app.route('/goals')
-def return_goals():
-    return jsonify(my_goals)
+def get_goals():
+   goals = Goal.objects().to_json()
+   return Response(goals, mimetype="application/json", status=200)
 
 @app.route('/goals', methods=['POST'])
-def add_goal():
-    goal = request.get_json()
-    my_goals.append(goal)
-    return {'id': len(my_goals)}, 200
+    body = request.get_json()
+    goal = Goal(**body).save()
+    id = goal.id
+    return {'id': str(id)}, 200
 
 
 if __name__ == "__main__":

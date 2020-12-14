@@ -3,45 +3,36 @@ from database.db import initialize_db
 from database.models import Goal
 
 app = Flask(__name__)
-
-my_goals = [
-    {
-        "description": "flask app backend",
-        "start": "342984203",
-        "finish": "2342342344"
-    },
-    {
-        "description": "flask app frontend",
-        "start": "342984203",
-        "finish": "2342342344"
-    },
-]
+print("initializing app")
 
 app.config['MONGODB_SETTINGS'] = {
-    'host': 'mongodb://localhost/movie-bag'
+    'host': 'mongodb://localhost/all_events'
     }
 
-initialize_db(app)
+db = initialize_db(app)
+print("initializing db in app.py")
 
 
 @app.route('/goals')
 def get_goals():
-   goals = Goal.objects().to_json()
-   return Response(goals, mimetype="application/json", status=200)
+    print("starting get_goals")
+    goals = Goal.objects().to_json()
+    return Response(goals, mimetype="application/json", status=200)
 
 
 @app.route('/goals', methods=['POST'])
 def add_goal():
+    print("starting add_goal")
     body = request.get_json()
     goal = Goal(**body).save()
     id = goal.id
     return {'id': str(id)}, 200
 
 
-@app.route('/movies/<id>')
+@app.route('/goals/<id>')
 def get_goal(id):
-    movies = Movie.objects.get(id=id).to_json()
-    return Response(movies, mimetype="application/json", status=200)
+    goals = Goal.objects.get(id=id).to_json()
+    return Response(goals, mimetype="application/json", status=200)
 
 
 if __name__ == "__main__":

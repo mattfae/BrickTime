@@ -3,15 +3,13 @@ from database.db import initialize_db
 from database.models import Goal
 
 app = Flask(__name__)
-print("initializing app")
 
 app.config['MONGODB_SETTINGS'] = {
+    'db': 'all_events',
     'host': 'mongodb://localhost/all_events'
     }
 
 db = initialize_db(app)
-print("initializing db in app.py")
-
 
 @app.route('/goals')
 def get_goals():

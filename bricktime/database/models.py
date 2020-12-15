@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 class Goal(db.Document):
     description = db.StringField(required=True)
@@ -9,7 +10,7 @@ class Goal(db.Document):
 class User(db.Document):
     email = db.StringField(required=True, unique=True)
     password = db.StringField()
-    authenticated = BooleanField(default=False)
+    authenticated = db.BooleanField(default=False)
 
     def is_active(self):
         return True

@@ -1,5 +1,5 @@
 from flask import Blueprint, Response, request
-from ..database.models import Goal
+from database.models import Goal
 
 goals = Blueprint('goals', __name__)
 

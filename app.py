@@ -11,6 +11,8 @@ app.config['MONGODB_SETTINGS'] = {
 
 db = initialize_db(app)
 
+app.secret_key = os.environ.get('SECRET_KEY', 'dev')
+
 @app.route('/goals')
 def get_goals():
     print("starting get_goals")

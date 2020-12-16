@@ -1,30 +1,25 @@
 import os
 from flask import Flask
 from database.db import initialize_db
-from database.models import Goal
-from database.models import User
-from resources.goal import goals
 
-app = Flask(__name__)
+db = initialize_db(app)
 
-app.config['MONGODB_SETTINGS'] = {
-    'db': 'all_events',
-    'host': 'mongodb://localhost/all_events'
-    }
+def create_app():
+    """Initialize the core application."""
+    app = Flask(__name__, instance_relative_config=False)
+    app.config.from_object('config.DevConfig')
 
-initialize_db(app)
+    # Initialize Plugins
+    initialize_app(app)
 
-app.secret_key = os.environ.get('SECRET_KEY', 'dev')
+    with app.app_context():
+        # Include our Routes
+        from . import routes
 
-@login_manager.user_loader
-def user_loader(email):
-    """Given *user_id*, return the associated User object.
+        # Register Blueprints
+        app.register_blueprint(auth.auth_bp)
+        app.register_blueprint(admin.admin_bp)
 
-    :param unicode user_id: user_id (email) user to retrieve
+        return app
 
-    """
-    return User.objects(email)
-
-if __name__ == "__main__":
-    app.run(debug=True)
 

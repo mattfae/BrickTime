@@ -1,7 +1,12 @@
-from flask import Blueprint, Response, request
-from database.models import Goal
 
-goals = Blueprint('goals', __name__)
+@login_manager.user_loader
+def user_loader(email):
+    """Given *user_id*, return the associated User object.
+
+    :param unicode user_id: user_id (email) user to retrieve
+
+    """
+    return User.objects(email)
 
 @goals.route('/goals')
 def get_goals():

@@ -1,3 +1,5 @@
+from flask import Response
+from .database.models import Goal, User
 
 @login_manager.user_loader
 def user_loader(email):
@@ -8,14 +10,14 @@ def user_loader(email):
     """
     return User.objects(email)
 
-@goals.route('/goals')
+@app.route('/goals')
 def get_goals():
     print("starting get_goals")
     goals = Goal.objects().to_json()
     return Response(goals, mimetype="application/json", status=200)
 
 
-@goals.route('/goals', methods=['POST'])
+@app.route('/goals', methods=['POST'])
 def add_goal():
     print("starting add_goal")
     body = request.get_json()
@@ -23,7 +25,7 @@ def add_goal():
     id = goal.id
     return {'id': str(id)}, 200
 
-@goals.route('/goals/<id>')
+@app.route('/goals/<id>')
 def get_goal(id):
     goals = Goal.objects.get(id=id).to_json()
     return Response(goals, mimetype="application/json", status=200)

@@ -1,6 +1,7 @@
-from .db import db
+from db import db
 from datetime import datetime
 
+# pylint: disable=no-member
 class Goal(db.Document):
     description = db.StringField(required=True)
     categories = db.ListField(db.StringField())

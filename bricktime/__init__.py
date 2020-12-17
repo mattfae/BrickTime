@@ -1,8 +1,9 @@
 import os
 from flask import Flask
-from database.db import initialize_db
+from .database.db import initialize_db
+from flask_login import LoginManager
 
-db = initialize_db(app)
+login_manager = LoginManager()
 
 def create_app():
     """Initialize the core application."""
@@ -10,16 +11,14 @@ def create_app():
     app.config.from_object('config.DevConfig')
 
     # Initialize Plugins
-    initialize_app(app)
+    initialize_db(app)
+    login_manager.init_app(app)
 
     with app.app_context():
         # Include our Routes
         from . import routes
 
         # Register Blueprints
-        app.register_blueprint(auth.auth_bp)
-        app.register_blueprint(admin.admin_bp)
+        #app.register_blueprint(auth.auth_bp)
 
         return app
-
-

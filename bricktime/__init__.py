@@ -1,7 +1,10 @@
 import os
 from flask import Flask
-from .database.db import initialize_db
-from auth import login_manager
+from flask_login import LoginManager
+from flask_mongoengine import MongoEngine
+
+db = MongoEngine()
+login_manager = LoginManager()
 
 def create_app():
     """Initialize the core application."""
@@ -9,7 +12,7 @@ def create_app():
     app.config.from_object('config.DevConfig')
 
     # Initialize Plugins
-    initialize_db(app)
+    db.init_app(app)
     login_manager.init_app(app)
 
     with app.app_context():

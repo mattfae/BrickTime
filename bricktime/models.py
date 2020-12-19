@@ -1,12 +1,12 @@
-from db import db
+from . import db
 from datetime import datetime
 
 # pylint: disable=no-member
 class Goal(db.Document):
     description = db.StringField(required=True)
     categories = db.ListField(db.StringField())
-    start = db.DateTimeField(required=True, default=datetime.datetime.utcnow)
-    finish = db.DateTimeField(required=True, default=datetime.datetime.utcnow)
+    start = db.DateTimeField(required=True, default=datetime.utcnow)
+    finish = db.DateTimeField(required=True, default=datetime.utcnow)
 
 class User(db.Document):
     email = db.StringField(required=True, unique=True)

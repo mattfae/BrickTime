@@ -1,7 +1,16 @@
 from flask import Response, request
 from flask import current_app as app
-from .database.models import Goal, User
+from . import login_manager
+from .models import Goal, User
 
+@login_manager.user_loader
+def user_loader(email):
+    """Given *user_id*, return the associated User object.
+
+    :param unicode user_id: user_id (email) user to retrieve
+
+    """
+    return User.objects(email)
 
 @app.route('/goals')
 def get_goals():

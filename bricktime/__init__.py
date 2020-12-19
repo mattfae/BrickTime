@@ -1,9 +1,7 @@
 import os
 from flask import Flask
 from .database.db import initialize_db
-from flask_login import LoginManager
-
-login_manager = LoginManager()
+from auth import login_manager
 
 def create_app():
     """Initialize the core application."""

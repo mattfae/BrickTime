@@ -1,4 +1,5 @@
-from flask import Response
+from flask import Response, request
+from flask import current_app as app
 from .database.models import Goal, User
 
 

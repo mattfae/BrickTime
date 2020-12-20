@@ -16,6 +16,8 @@ class Config:
     'db': 'all_events',
     'host': 'mongodb://localhost/all_events'
     }
+    FLASK_APP = 'wsgi.py'
+    SECRET_KEY = environ.get('SECRET_KEY')
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'

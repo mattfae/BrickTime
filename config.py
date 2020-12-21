@@ -1,4 +1,4 @@
-"""Flask configuration."""
+"""Flask configuration"""
 from os import environ, path
 from dotenv import load_dotenv
 
@@ -8,16 +8,15 @@ load_dotenv(path.join(basedir, '.env'))
 
 class Config:
     """Base config."""
-    #SECRET_KEY = environ.get('SECRET_KEY')
+    FLASK_APP = 'wsgi.py'
+    SECRET_KEY = 'dev' #environ.get('SECRET_KEY')
     #SESSION_COOKIE_NAME = environ.get('SESSION_COOKIE_NAME')
     #STATIC_FOLDER = 'static'
     #TEMPLATES_FOLDER = 'templates'
     MONGODB_SETTINGS = {
-    'db': 'all_events',
-    'host': 'mongodb://localhost/all_events'
+    'db': 'bricktime',
+    'host': 'mongodb://127.0.0.1:27017/bricktime'
     }
-    FLASK_APP = 'wsgi.py'
-    SECRET_KEY = environ.get('SECRET_KEY')
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'

@@ -9,14 +9,17 @@ load_dotenv(path.join(basedir, '.env'))
 class Config:
     """Base config."""
     FLASK_APP = 'wsgi.py'
-    SECRET_KEY = 'dev' #environ.get('SECRET_KEY')
+    SECRET_KEY = environ.get('SECRET_KEY')
     #SESSION_COOKIE_NAME = environ.get('SESSION_COOKIE_NAME')
     #STATIC_FOLDER = 'static'
     #TEMPLATES_FOLDER = 'templates'
     MONGODB_SETTINGS = {
     'db': 'bricktime',
-    'host': 'mongodb://127.0.0.1:27017/bricktime'
+    'host': 'mongodb://127.0.0.1:27017'
     }
+    SESSION_TYPE = 'MongoDBSessionInterface'
+    SESSION_MONGODB_DB = 'bricktime'
+
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'

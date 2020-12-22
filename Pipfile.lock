@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f2e2dc856a3c69356d619ae5983b6b2b4a798efdc4757746d26c2a606769573b"
+            "sha256": "473ca6a610cdbeaccc2ca9994108e75103b336c1b56aa93d2bd74445eb3b1949"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,13 @@
         ]
     },
     "default": {
+        "cachelib": {
+            "hashes": [
+                "sha256:47e95a67d68c729cbad63285a790a06f0e0d27d71624c6e44c1ec3456bb4476f",
+                "sha256:7df6e05b8dfccdeb869e171575580e5606cf1e82a166633b3cb406bc4f113fd0"
+            ],
+            "version": "==0.1.1"
+        },
         "click": {
             "hashes": [
                 "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a",
@@ -62,6 +69,14 @@
             ],
             "index": "pypi",
             "version": "==1.0.0"
+        },
+        "flask-session": {
+            "hashes": [
+                "sha256:0768e2bbf06f963ec1aa711bde7aa32dc39ff70f89b495d6db687d899eae4423",
+                "sha256:d75eb27f918421ccaf1ba86353348b84ecf07fc64ce40ff7ad05a190c4bf50f1"
+            ],
+            "index": "pypi",
+            "version": "==0.3.2"
         },
         "flask-wtf": {
             "hashes": [
@@ -135,11 +150,11 @@
         },
         "mongoengine": {
             "hashes": [
-                "sha256:72559546dc9cef7f96850bb8b3a005d3537f9a23a2a27ebf71e1f0c71a83f716",
-                "sha256:9f66c08e2b045bf23a2ca26813a510ec3beb6253f631779f9110555fd8f5a283"
+                "sha256:4d5efb8b6ddffc087d0741fe56fe30637b5629e33c8fae8de53a907ec20c43dd",
+                "sha256:620d13db551c849402eb3c362878934f5260ec0028fff2a5d81bf53b21d91572"
             ],
-            "markers": "python_version >= '3.5'",
-            "version": "==0.22.0"
+            "markers": "python_version >= '3.6'",
+            "version": "==0.22.1"
         },
         "pymongo": {
             "hashes": [
@@ -208,6 +223,7 @@
                 "sha256:fc4946acb6cdada08f60aca103b61334995523da65be5fe816ea8571c9967d46",
                 "sha256:fcc66d17a3363b7bd6d2655de8706e25a3cd1be2bd1b8e8d8a5c504a6ef893ae"
             ],
+            "index": "pypi",
             "version": "==3.11.2"
         },
         "python-dotenv": {

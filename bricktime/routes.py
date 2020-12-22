@@ -12,7 +12,7 @@ def user_loader(email):
     """
     return User.objects(email)
 
-@app.route('/goals')
+@app.route('/goals', methods=['GET'])
 def get_goals():
     print("starting get_goals")
     goals = Goal.objects().to_json()

@@ -1,10 +1,11 @@
-import os
 from flask import Flask
 from flask_login import LoginManager
 from flask_mongoengine import MongoEngine
+from flask_session import Session
 
 db = MongoEngine()
 login_manager = LoginManager()
+sess = Session()
 
 def create_app():
     """Initialize the core application."""
@@ -14,6 +15,7 @@ def create_app():
     # Initialize Plugins
     db.init_app(app)
     login_manager.init_app(app)
+    sess.init_app(app)
 
     with app.app_context():
         # Include our Routes

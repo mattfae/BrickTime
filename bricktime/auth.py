@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 
 auth_bp = Blueprint(
     'auth.bp', __name__,
@@ -10,3 +10,4 @@ def login():
 
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
+    

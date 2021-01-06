@@ -15,11 +15,8 @@ class Config:
     #TEMPLATES_FOLDER = 'templates'
     MONGODB_SETTINGS = {
     'db': 'bricktime',
-    'host': 'mongodb://127.0.0.1:27017'
+    'host': 'mongodb://127.0.0.1:27017/bricktime'
     }
-    SESSION_TYPE = 'MongoDBSessionInterface'
-    SESSION_MONGODB_DB = 'bricktime'
-
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'

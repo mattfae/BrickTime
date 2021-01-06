@@ -7,7 +7,8 @@ auth_bp = Blueprint(
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    
 
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
-    
+

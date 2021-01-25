@@ -6,8 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class Goal(db.Document):
     description = db.StringField(required=True)
     categories = db.ListField(db.StringField())
-    start = db.DateTimeField(required=True, default=datetime.utcnow)
-    finish = db.DateTimeField(required=True, default=datetime.utcnow)
 
 class User(db.Document):
     email = db.StringField(required=True, unique=True)
@@ -32,7 +30,7 @@ class User(db.Document):
     def set_password(self, password):
         self.password = generate_password_hash(
             password,
-            method-'sha256'
+            method='sha256'
         )
 
     def check_password(self, password):
